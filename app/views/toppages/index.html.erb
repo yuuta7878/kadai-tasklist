@@ -1,6 +1,6 @@
 <!--ログイン後にトップページの表示を変更-->
 <% if logged_in? %>
-<p>ログイン完了ユーザ: <%= current_user.name %></p> <!--仮定記述-->
+<p>ログイン完了ユーザ: <%= current_user.name %></p> <!--仮定メソッド => Helperで定義--> 
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">

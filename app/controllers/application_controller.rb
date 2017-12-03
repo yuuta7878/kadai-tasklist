@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
-  include SessionsHelper
+  include SessionsHelper # => ControllerからHelperのメソッドを使えるようにする処理
   
-  private
+  private # ログイン要求処理
 
   def require_user_logged_in
     unless logged_in?

@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  # before_action　=> only:で指定されたアクションに対して、事前処理を設定できる
+  #1 require_user_logged_in => ログイン状態を確認し、ログインしていれば何もせず、
+  #2 ログインしていなければログインページへ強制的にリダイレクトさせる。=> 会員制サービスの開発に流用可能
   before_action :require_user_logged_in, only: [:index, :show]
   
   def index
