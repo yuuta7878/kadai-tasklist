@@ -1,10 +1,40 @@
 <!--ログイン後にトップページの表示を変更-->
+<!--ログイン後のトップページには自分の投稿したTasksが表示される-->
 <% if logged_in? %>
-<p>ログイン完了ユーザ: <%= current_user.name %></p> <!--仮定メソッド => Helperで定義--> 
+  <div class="row">
+    <aside class="col-md-4">
+      <%= form_for(@task) do |f| %>
+      <% if @task.errors.any? %>
+        <div id="error_explanation">
+          </ul>
+            <% @task.errors.full_messages.each do |task| %>
+              <li><%= task %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      
+      <!--タスクフォーム-->
+        <div class="form-group">
+          <%= f.label :content, 'タスク' %>
+          <%= f.text_field :content, class: 'form-control', rows: 5 %>
+        </div>
+      <!--ステータスフォーム-->
+        <div class="form-group">
+          <%= f.label :status, 'ステータス' %>
+          <%= f.text_field :status, class: 'form-control', rows: 5 %>
+        </div>
+        <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </aside>
+    <div class="col-xs-8">
+      <%= render 'tasks/tasks', tasks: @tasks %>
+    </div>
+  </div>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
-      <h1>Welcome to the Tasklist !</h1>
+      <h1>Welcome to the Tasklist</h1>
       <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>

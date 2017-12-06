@@ -5,12 +5,12 @@ class SessionsController < ApplicationController
 # params にフォームデータは代入されている
   def create 
     # 取り出す時の二段階指定して取得
-    email = params[:session][:email].downcase　#フォームデータの email を小文字化して取得
+    email = params[:session][:email].downcase #フォームデータの email を小文字化して取得
     password = params[:session][:password] 
     if login(email, password) # ログイン可能なメソッドが定義、ログインに成功すればtrueを返し、失敗すればfalseを返す仕様
       flash[:success] = 'ログインに成功しました。'
       # 成功時、@userのusers#showへとリダイレクト
-      redirect_to @user　
+      redirect_to @user 
     else
       # 失敗時、render 'new'によりsessions/new.html.erbを再表示する
       flash.now[:danger] = 'ログインに失敗しました。'
